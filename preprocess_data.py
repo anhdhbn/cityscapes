@@ -94,7 +94,8 @@ new_img_height = 512 # (the height all images fed to the model will be resized t
 new_img_width = 1024 # (the width all images fed to the model will be resized to)
 no_of_classes = 20 # (number of object classes (road, sidewalk, car etc.))
 
-cityscapes_dir = data_dir + "cityscapes/"
+# cityscapes_dir = data_dir + "cityscapes/"
+cityscapes_dir = data_dir + ""
 
 train_imgs_dir = cityscapes_dir + "leftImg8bit/train/"
 train_gt_dir = cityscapes_dir + "gtFine/train/"
