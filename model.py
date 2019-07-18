@@ -4,7 +4,7 @@ import cPickle
 
 from utilities import PReLU, spatial_dropout, max_unpool
 
-class UNet_model(object):
+class ENet_model(object):
 
     def __init__(self, model_id, img_height=512, img_width=1024, batch_size=4):
         self.model_id = model_id
