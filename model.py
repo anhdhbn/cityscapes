@@ -100,7 +100,7 @@ def dice_coef(y_true, y_pred):
     return (2. * K.sum(y_true * y_pred) + 1.) / (K.sum(y_true) + K.sum(y_pred) + 1.)
 
 
-def fcn_8s(num_classes, input_shape, lr_init, lr_decay, vgg_weight_path=None):
+def fcn_8s(num_classes, input_shape, lr_init, lr_decay):
     img_input = Input(input_shape)
 
     # Block 1
@@ -169,11 +169,6 @@ def fcn_8s(num_classes, input_shape, lr_init, lr_decay, vgg_weight_path=None):
     x = Activation('relu')(x)
 
     x = MaxPooling2D()(x)
-
-    # Load pretrained weights.
-    if vgg_weight_path is not None:
-        vgg16 = Model(img_input, x)
-        vgg16.load_weights(vgg_weight_path, by_name=True)
 
     # Convolutinalized fully connected layer.
     x = Conv2D(4096, (7, 7), activation='relu', padding='same')(x)
