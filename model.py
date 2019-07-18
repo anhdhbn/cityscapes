@@ -2,8 +2,6 @@ import tensorflow as tf
 import os
 import cPickle
 
-from utilities import PReLU, spatial_dropout, max_unpool
-
 from keras.models import *
 from keras.layers import *
 from keras.optimizers import *
