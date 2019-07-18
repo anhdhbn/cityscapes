@@ -4,7 +4,7 @@ import cPickle
 
 from utilities import PReLU, spatial_dropout, max_unpool
 
-class ENet_model(object):
+class UNet_model(object):
 
     def __init__(self, model_id, img_height=512, img_width=1024, batch_size=4):
         self.model_id = model_id
@@ -20,7 +20,7 @@ class ENet_model(object):
         self.img_width = img_width
 
         self.no_of_classes = 20
-        self.class_weights = cPickle.load(open("data/class_weights.pkl"))
+        self.class_weights = cPickle.load(open(self.project_dir + "data/class_weights.pkl"))
 
         self.wd = 2e-4 # (weight decay)
         self.lr = 5e-4 # (learning rate)
