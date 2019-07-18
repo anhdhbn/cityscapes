@@ -201,8 +201,5 @@ def fcn_8s(num_classes, input_shape, lr_init, lr_decay):
     x = Activation('softmax')(x)
 
     model = Model(img_input, x)
-    model.compile(optimizer=Adam(lr=lr_init, decay=lr_decay),
-                  loss='categorical_crossentropy',
-                  metrics=[dice_coef])
-
+    
     return model
