@@ -14,7 +14,7 @@ from keras.initializers import *
 from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 
 
-def get_unet(input_img, n_filters=32, dropout=0.5, batchnorm=True):
+def get_unet(input_img, no_of_classes=20, n_filters=32, dropout=0.5, batchnorm=True):
     # contracting path
     c1 = conv2d_block(input_img, n_filters=n_filters*1, kernel_size=3, batchnorm=batchnorm)
     p1 = MaxPooling2D((2, 2)) (c1)
@@ -55,7 +55,7 @@ def get_unet(input_img, n_filters=32, dropout=0.5, batchnorm=True):
     u9 = Dropout(dropout)(u9)
     c9 = conv2d_block(u9, n_filters=n_filters*1, kernel_size=3, batchnorm=batchnorm)
     
-    outputs = Conv2D(20, (1, 1), activation='sigmoid') (c9)
+    outputs = Conv2D(no_of_classes, (1, 1), activation='sigmoid') (c9)
     model = Model(inputs=[input_img], outputs=[outputs])
     return model
 
