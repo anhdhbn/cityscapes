@@ -20,7 +20,7 @@ from PIL import Image
 
 import cv2
 
-data_dir = "/content/unet-cityscapes/data/"
+data_dir = "/content/cityscapes/data/"
 
 def preprocessinglabel(path):
   frame = cv2.imread(path)

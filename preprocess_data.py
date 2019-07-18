@@ -6,8 +6,8 @@ import tensorflow as tf
 from collections import namedtuple
 import random
 
-project_dir = "/content/unet-cityscapes/segmentation/"
-data_dir = "/content/unet-cityscapes/data/"
+project_dir = "/content/cityscapes/segmentation/"
+data_dir = "/content/cityscapes/data/"
 
 # (NOTE! this is taken from the official Cityscapes scripts:)
 Label = namedtuple( 'Label' , [
