@@ -100,7 +100,7 @@ def dice_coef(y_true, y_pred):
     return (2. * K.sum(y_true * y_pred) + 1.) / (K.sum(y_true) + K.sum(y_pred) + 1.)
 
 
-def fcn_8s(num_classes, input_shape, lr_init, lr_decay, n_filters=32):
+def fcn_8s(num_classes, input_shape, n_filters=32):
     img_input = Input(input_shape)
 
     # Block 1
