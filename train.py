@@ -22,7 +22,7 @@ epochs = 5
 
 
 # train_mean_channels = pickle.load(open(project_dir + "data/mean_channels.pkl"))
-train_mean_channels = pickle.load(open(preprocess_data_dir + "mean_channels.pkl"))
+train_mean_channels = pickle.load(open(preprocess_data_dir + "mean_channels.pkl").encode('utf-8'))
 
 # load the training data from disk:
 # train_img_paths = pickle.load(open(data_dir + "train_img_paths.pkl"))
