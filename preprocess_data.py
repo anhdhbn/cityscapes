@@ -6,8 +6,24 @@ import tensorflow as tf
 from collections import namedtuple
 import random
 
-project_dir = "/content/cityscapes/segmentation/"
-data_dir = "/content/cityscapes/data/"
+
+
+root = "./"
+
+project_dir =  root + "cityscapes/segmentation/"
+project_data_dir = project_dir + "data/"
+preprocess_data_dir = root + "cityscapes/preprocess-data/"
+data_dir = root + "cityscapes/data/"
+
+make_dir(project_dir)
+make_dir(project_data_dir)
+make_dir(preprocess_data_dir)
+make_dir(data_dir)
+
+def make_dir(path):
+    directory = os.path.dirname(path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 # (NOTE! this is taken from the official Cityscapes scripts:)
 Label = namedtuple( 'Label' , [
@@ -156,12 +172,12 @@ for dir_step, dir in enumerate(train_dirs):
 
 
 # compute the mean color channels of the train imgs:
-print "computing mean color channels of the train imgs"
+print("computing mean color channels of the train imgs")
 no_of_train_imgs = len(train_img_paths)
 mean_channels = np.zeros((3, ))
 for step, img_path in enumerate(train_img_paths):
     if step % 100 == 0:
-        print step
+        print(step)
 
     img = cv2.imread(img_path, -1)
 
@@ -173,11 +189,11 @@ for step, img_path in enumerate(train_img_paths):
 mean_channels = mean_channels/float(no_of_train_imgs)
 
 # # save to disk:
-cPickle.dump(mean_channels, open(project_dir + "data/mean_channels.pkl", "w"))
-
+# cPickle.dump(mean_channels, open(project_dir + "data/mean_channels.pkl", "w"))
+cPickle.dump(mean_channels, open(preprocess_data_dir + "mean_channels.pkl", "w"))
 
 # compute the class weights:
-print "computing class weights"
+print("computing class weights")
 trainId_to_count = {}
 for trainId in range(no_of_classes):
     trainId_to_count[trainId] = 0
@@ -186,7 +202,7 @@ for trainId in range(no_of_classes):
 # # object class:
 for step, trainId_label_path in enumerate(train_trainId_label_paths):
     if step % 100 == 0:
-        print step
+        print(step)
 
     # read the label image:
     trainId_label = cv2.imread(trainId_label_path, -1)
@@ -208,8 +224,8 @@ for trainId, count in trainId_to_count.items():
     class_weights.append(trainId_weight)
 
 # # save to disk:
-cPickle.dump(class_weights, open(project_dir + "data/class_weights.pkl", "w"))
-
+# cPickle.dump(class_weights, open(project_dir + "data/class_weights.pkl", "w"))
+cPickle.dump(class_weights, open(preprocess_data_dir + "class_weights.pkl", "w"))
 
 # get the path to all validation images and their corresponding label image:
 val_img_paths = []
@@ -220,8 +236,8 @@ for dir_step, dir in enumerate(val_dirs):
     file_names = os.listdir(img_dir)
     for step, file_name in enumerate(file_names):
         if step % 10 == 0:
-            print "val dir %d/%d, step %d/%d" % (dir_step, len(val_dirs)-1,
-                        step, len(file_names)-1)
+            print("val dir %d/%d, step %d/%d" % (dir_step, len(val_dirs)-1,
+                        step, len(file_names)-1))
 
         img_id = file_name.split("_left")[0]
 
@@ -256,23 +272,30 @@ for dir_step, dir in enumerate(val_dirs):
         val_trainId_label_paths.append(trainId_label_path)
 
 # # save the validation data to disk:
+# cPickle.dump(val_trainId_label_paths,
+#             open(project_dir + "data/val_trainId_label_paths.pkl", "w"))
+# cPickle.dump(val_img_paths,
+#             open(project_dir + "data/val_img_paths.pkl", "w"))
+
+
 cPickle.dump(val_trainId_label_paths,
-            open(project_dir + "data/val_trainId_label_paths.pkl", "w"))
+            open(preprocess_data_dir + "val_trainId_label_paths.pkl", "w"))
 cPickle.dump(val_img_paths,
-            open(project_dir + "data/val_img_paths.pkl", "w"))
+            open(preprocess_data_dir + "val_img_paths.pkl", "w"))
+
 # val_trainId_label_paths = cPickle.load(open(project_dir + "data/val_trainId_label_paths.pkl"))
 # val_img_paths = cPickle.load(open(project_dir + "data/val_img_paths.pkl"))
 
 
 # augment the train data by flipping all train imgs:
 no_of_train_imgs = len(train_img_paths)
-print "number of train imgs before augmentation: %d " % no_of_train_imgs
+print("number of train imgs before augmentation: %d " % no_of_train_imgs)
 
 augmented_train_img_paths = []
 augmented_train_trainId_label_paths = []
 for step, (img_path, label_path) in enumerate(zip(train_img_paths, train_trainId_label_paths)):
     if step % 100 == 0:
-        print step
+        print(step)
 
     augmented_train_img_paths.append(img_path)
     augmented_train_trainId_label_paths.append(label_path)
@@ -305,12 +328,19 @@ random.shuffle(augmented_train_data)
 # # save the augmented train data to disk:
 train_data = augmented_train_data
 train_img_paths, train_trainId_label_paths = zip(*train_data)
+# cPickle.dump(train_img_paths,
+#             open(project_dir + "data/train_img_paths.pkl", "w"))
+# cPickle.dump(train_trainId_label_paths,
+#             open(project_dir + "data/train_trainId_label_paths.pkl", "w"))
+
 cPickle.dump(train_img_paths,
-            open(project_dir + "data/train_img_paths.pkl", "w"))
+            open(preprocess_data_dir + "train_img_paths.pkl", "w"))
 cPickle.dump(train_trainId_label_paths,
-            open(project_dir + "data/train_trainId_label_paths.pkl", "w"))
+            open(preprocess_data_dir + "train_trainId_label_paths.pkl", "w"))
+
+            
 # train_img_paths = cPickle.load(open(project_dir + "data/train_img_paths.pkl"))
 # train_trainId_label_paths = cPickle.load(open(project_dir + "data/train_trainId_label_paths.pkl"))
 
 no_of_train_imgs = len(train_img_paths)
-print "number of train imgs after augmentation: %d " % no_of_train_imgs
+print("number of train imgs after augmentation: %d " % no_of_train_imgs)
