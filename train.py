@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import cv2
 import random
+import time
 
+start_time = time.time()
 project_dir = "/content/cityscapes/segmentation/"
 
 data_dir = project_dir + "data/"
@@ -100,3 +102,4 @@ model.summary()
 
 his = model.fit_generator(generator=train_data_iterator(), epochs=epochs, steps_per_epoch=no_of_batches)
 
+print("--- %s seconds ---" % (time.time() - start_time))
