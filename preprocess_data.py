@@ -189,6 +189,8 @@ for step, img_path in enumerate(train_img_paths):
 
 mean_channels = mean_channels/float(no_of_train_imgs)
 
+
+print(mean_channels)
 # # save to disk:
 # pickle.dump(mean_channels, open(project_dir + "data/mean_channels.pkl", "w"))
 pickle.dump(mean_channels, open(preprocess_data_dir + "mean_channels.pkl", "wb"))
