@@ -22,14 +22,14 @@ epochs = 5
 
 
 # train_mean_channels = pickle.load(open(project_dir + "data/mean_channels.pkl"))
-train_mean_channels = pickle.load(open(preprocess_data_dir + "mean_channels.pkl").encode('utf-8'))
+train_mean_channels = pickle.load(open(preprocess_data_dir + "mean_channels.pkl"))
 
 # load the training data from disk:
 # train_img_paths = pickle.load(open(data_dir + "train_img_paths.pkl"))
 # train_trainId_label_paths = pickle.load(open(data_dir + "train_trainId_label_paths.pkl"))
 
-train_img_paths = pickle.load(open(preprocess_data_dir + "train_img_paths.pkl").encode('utf-8'))
-train_trainId_label_paths = pickle.load(open(preprocess_data_dir + "train_trainId_label_paths.pkl").encode('utf-8'))
+train_img_paths = pickle.load(open(preprocess_data_dir + "train_img_paths.pkl"))
+train_trainId_label_paths = pickle.load(open(preprocess_data_dir + "train_trainId_label_paths.pkl"))
 train_data = list(zip(train_img_paths, train_trainId_label_paths))
 
 
@@ -41,10 +41,10 @@ no_of_batches = int(no_of_train_imgs/batch_size)
 # val_img_paths = pickle.load(open(data_dir + "val_img_paths.pkl"))
 # val_trainId_label_paths = pickle.load(open(data_dir + "val_trainId_label_paths.pkl"))
 
-val_img_paths = pickle.load(open(preprocess_data_dir + "val_img_paths.pkl").encode('utf-8'))
-val_trainId_label_paths = pickle.load(open(preprocess_data_dir + "val_trainId_label_paths.pkl").encode('utf-8'))
+val_img_paths = pickle.load(open(preprocess_data_dir + "val_img_paths.pkl"))
+val_trainId_label_paths = pickle.load(open(preprocess_data_dir + "val_trainId_label_paths.pkl"))
 
-val_data = zip(val_img_paths, val_trainId_label_paths)
+val_data = list(zip(val_img_paths, val_trainId_label_paths))
 
 # compute the number of batches needed to iterate through the val data:
 no_of_val_imgs = len(val_img_paths)
