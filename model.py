@@ -1,6 +1,6 @@
 import tensorflow as tf
 import os
-import cPickle
+import pickle
 
 from keras.models import *
 from keras.layers import *
