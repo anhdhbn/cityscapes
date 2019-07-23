@@ -1,5 +1,5 @@
 import numpy as np
-import cPickle
+import pickle
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import cv2
@@ -21,15 +21,15 @@ no_of_classes = 20
 epochs = 5
 
 
-# train_mean_channels = cPickle.load(open(project_dir + "data/mean_channels.pkl"))
-train_mean_channels = cPickle.load(open(preprocess_data_dir + "mean_channels.pkl"))
+# train_mean_channels = pickle.load(open(project_dir + "data/mean_channels.pkl"))
+train_mean_channels = pickle.load(open(preprocess_data_dir + "mean_channels.pkl"))
 
 # load the training data from disk:
-# train_img_paths = cPickle.load(open(data_dir + "train_img_paths.pkl"))
-# train_trainId_label_paths = cPickle.load(open(data_dir + "train_trainId_label_paths.pkl"))
+# train_img_paths = pickle.load(open(data_dir + "train_img_paths.pkl"))
+# train_trainId_label_paths = pickle.load(open(data_dir + "train_trainId_label_paths.pkl"))
 
-train_img_paths = cPickle.load(open(preprocess_data_dir + "train_img_paths.pkl"))
-train_trainId_label_paths = cPickle.load(open(preprocess_data_dir + "train_trainId_label_paths.pkl"))
+train_img_paths = pickle.load(open(preprocess_data_dir + "train_img_paths.pkl"))
+train_trainId_label_paths = pickle.load(open(preprocess_data_dir + "train_trainId_label_paths.pkl"))
 train_data = list(zip(train_img_paths, train_trainId_label_paths))
 
 
@@ -38,11 +38,11 @@ no_of_train_imgs = len(train_img_paths)
 no_of_batches = int(no_of_train_imgs/batch_size)
 
 # load the validation data from disk:
-# val_img_paths = cPickle.load(open(data_dir + "val_img_paths.pkl"))
-# val_trainId_label_paths = cPickle.load(open(data_dir + "val_trainId_label_paths.pkl"))
+# val_img_paths = pickle.load(open(data_dir + "val_img_paths.pkl"))
+# val_trainId_label_paths = pickle.load(open(data_dir + "val_trainId_label_paths.pkl"))
 
-val_img_paths = cPickle.load(open(preprocess_data_dir + "val_img_paths.pkl"))
-val_trainId_label_paths = cPickle.load(open(preprocess_data_dir + "val_trainId_label_paths.pkl"))
+val_img_paths = pickle.load(open(preprocess_data_dir + "val_img_paths.pkl"))
+val_trainId_label_paths = pickle.load(open(preprocess_data_dir + "val_trainId_label_paths.pkl"))
 
 val_data = zip(val_img_paths, val_trainId_label_paths)
 

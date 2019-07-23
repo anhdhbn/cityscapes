@@ -1,5 +1,5 @@
 import cv2
-import cPickle
+import pickle
 import os
 import numpy as np
 import tensorflow as tf
@@ -189,8 +189,8 @@ for step, img_path in enumerate(train_img_paths):
 mean_channels = mean_channels/float(no_of_train_imgs)
 
 # # save to disk:
-# cPickle.dump(mean_channels, open(project_dir + "data/mean_channels.pkl", "w"))
-cPickle.dump(mean_channels, open(preprocess_data_dir + "mean_channels.pkl", "w"))
+# pickle.dump(mean_channels, open(project_dir + "data/mean_channels.pkl", "w"))
+pickle.dump(mean_channels, open(preprocess_data_dir + "mean_channels.pkl", "w"))
 
 # compute the class weights:
 print("computing class weights")
@@ -224,8 +224,8 @@ for trainId, count in trainId_to_count.items():
     class_weights.append(trainId_weight)
 
 # # save to disk:
-# cPickle.dump(class_weights, open(project_dir + "data/class_weights.pkl", "w"))
-cPickle.dump(class_weights, open(preprocess_data_dir + "class_weights.pkl", "w"))
+# pickle.dump(class_weights, open(project_dir + "data/class_weights.pkl", "w"))
+pickle.dump(class_weights, open(preprocess_data_dir + "class_weights.pkl", "w"))
 
 # get the path to all validation images and their corresponding label image:
 val_img_paths = []
@@ -272,19 +272,19 @@ for dir_step, dir in enumerate(val_dirs):
         val_trainId_label_paths.append(trainId_label_path)
 
 # # save the validation data to disk:
-# cPickle.dump(val_trainId_label_paths,
+# pickle.dump(val_trainId_label_paths,
 #             open(project_dir + "data/val_trainId_label_paths.pkl", "w"))
-# cPickle.dump(val_img_paths,
+# pickle.dump(val_img_paths,
 #             open(project_dir + "data/val_img_paths.pkl", "w"))
 
 
-cPickle.dump(val_trainId_label_paths,
+pickle.dump(val_trainId_label_paths,
             open(preprocess_data_dir + "val_trainId_label_paths.pkl", "w"))
-cPickle.dump(val_img_paths,
+pickle.dump(val_img_paths,
             open(preprocess_data_dir + "val_img_paths.pkl", "w"))
 
-# val_trainId_label_paths = cPickle.load(open(project_dir + "data/val_trainId_label_paths.pkl"))
-# val_img_paths = cPickle.load(open(project_dir + "data/val_img_paths.pkl"))
+# val_trainId_label_paths = pickle.load(open(project_dir + "data/val_trainId_label_paths.pkl"))
+# val_img_paths = pickle.load(open(project_dir + "data/val_img_paths.pkl"))
 
 
 # augment the train data by flipping all train imgs:
@@ -328,19 +328,19 @@ random.shuffle(augmented_train_data)
 # # save the augmented train data to disk:
 train_data = augmented_train_data
 train_img_paths, train_trainId_label_paths = zip(*train_data)
-# cPickle.dump(train_img_paths,
+# pickle.dump(train_img_paths,
 #             open(project_dir + "data/train_img_paths.pkl", "w"))
-# cPickle.dump(train_trainId_label_paths,
+# pickle.dump(train_trainId_label_paths,
 #             open(project_dir + "data/train_trainId_label_paths.pkl", "w"))
 
-cPickle.dump(train_img_paths,
+pickle.dump(train_img_paths,
             open(preprocess_data_dir + "train_img_paths.pkl", "w"))
-cPickle.dump(train_trainId_label_paths,
+pickle.dump(train_trainId_label_paths,
             open(preprocess_data_dir + "train_trainId_label_paths.pkl", "w"))
 
             
-# train_img_paths = cPickle.load(open(project_dir + "data/train_img_paths.pkl"))
-# train_trainId_label_paths = cPickle.load(open(project_dir + "data/train_trainId_label_paths.pkl"))
+# train_img_paths = pickle.load(open(project_dir + "data/train_img_paths.pkl"))
+# train_trainId_label_paths = pickle.load(open(project_dir + "data/train_trainId_label_paths.pkl"))
 
 no_of_train_imgs = len(train_img_paths)
 print("number of train imgs after augmentation: %d " % no_of_train_imgs)
