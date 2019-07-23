@@ -2,7 +2,6 @@ import cv2
 import pickle
 import os
 import numpy as np
-import tensorflow as tf
 from collections import namedtuple
 import random
 
