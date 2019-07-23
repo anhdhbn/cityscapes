@@ -10,10 +10,10 @@ import random
 
 root = "./"
 
-project_dir =  root + "cityscapes/segmentation/"
+project_dir =  root + "segmentation/"
 project_data_dir = project_dir + "data/"
-preprocess_data_dir = root + "cityscapes/preprocess-data/"
-data_dir = root + "cityscapes/data/"
+preprocess_data_dir = root + "preprocess-data/"
+data_dir = root + "data/"
 
 
 def make_dir(path):
