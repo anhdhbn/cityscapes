@@ -191,7 +191,7 @@ mean_channels = mean_channels/float(no_of_train_imgs)
 
 # # save to disk:
 # pickle.dump(mean_channels, open(project_dir + "data/mean_channels.pkl", "w"))
-pickle.dump(mean_channels, open(preprocess_data_dir + "mean_channels.pkl", "w"))
+pickle.dump(mean_channels, open(preprocess_data_dir + "mean_channels.pkl", "wb"))
 
 # compute the class weights:
 print("computing class weights")
@@ -226,7 +226,7 @@ for trainId, count in trainId_to_count.items():
 
 # # save to disk:
 # pickle.dump(class_weights, open(project_dir + "data/class_weights.pkl", "w"))
-pickle.dump(class_weights, open(preprocess_data_dir + "class_weights.pkl", "w"))
+pickle.dump(class_weights, open(preprocess_data_dir + "class_weights.pkl", "wb"))
 
 # get the path to all validation images and their corresponding label image:
 val_img_paths = []
@@ -280,9 +280,9 @@ for dir_step, dir in enumerate(val_dirs):
 
 
 pickle.dump(val_trainId_label_paths,
-            open(preprocess_data_dir + "val_trainId_label_paths.pkl", "w"))
+            open(preprocess_data_dir + "val_trainId_label_paths.pkl", "wb"))
 pickle.dump(val_img_paths,
-            open(preprocess_data_dir + "val_img_paths.pkl", "w"))
+            open(preprocess_data_dir + "val_img_paths.pkl", "wb"))
 
 # val_trainId_label_paths = pickle.load(open(project_dir + "data/val_trainId_label_paths.pkl"))
 # val_img_paths = pickle.load(open(project_dir + "data/val_img_paths.pkl"))
