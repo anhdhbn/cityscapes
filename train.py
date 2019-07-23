@@ -9,9 +9,9 @@ project_dir = "/content/cityscapes/segmentation/"
 
 data_dir = project_dir + "data/"
 
-preprocess_data_dir = "./segmentation/"
+preprocess_data_dir = "./segmentation/data/"
 
-batch_size = 4
+batch_size = 8
 
 img_height = 512
 img_width = 1024
