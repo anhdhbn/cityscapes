@@ -337,9 +337,9 @@ train_img_paths, train_trainId_label_paths = zip(*train_data)
 #             open(project_dir + "data/train_trainId_label_paths.pkl", "w"))
 
 pickle.dump(train_img_paths,
-            open(preprocess_data_dir + "train_img_paths.pkl", "w"))
+            open(preprocess_data_dir + "train_img_paths.pkl", "wb"))
 pickle.dump(train_trainId_label_paths,
-            open(preprocess_data_dir + "train_trainId_label_paths.pkl", "w"))
+            open(preprocess_data_dir + "train_trainId_label_paths.pkl", "wb"))
 
             
 # train_img_paths = pickle.load(open(project_dir + "data/train_img_paths.pkl"))
