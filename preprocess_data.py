@@ -15,15 +15,17 @@ project_data_dir = project_dir + "data/"
 preprocess_data_dir = root + "cityscapes/preprocess-data/"
 data_dir = root + "cityscapes/data/"
 
-make_dir(project_dir)
-make_dir(project_data_dir)
-make_dir(preprocess_data_dir)
-make_dir(data_dir)
 
 def make_dir(path):
     directory = os.path.dirname(path)
     if not os.path.exists(directory):
         os.makedirs(directory)
+
+make_dir(project_dir)
+make_dir(project_data_dir)
+make_dir(preprocess_data_dir)
+make_dir(data_dir)
+
 
 # (NOTE! this is taken from the official Cityscapes scripts:)
 Label = namedtuple( 'Label' , [
