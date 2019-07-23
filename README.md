@@ -1,4 +1,4 @@
-# cityscapes
+# train cityscapes-dataset using UNet model
 
 ``` bash
 git clone https://github.com/anhdhbn/cityscapes
