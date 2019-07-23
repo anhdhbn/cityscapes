@@ -9,7 +9,7 @@ project_dir = "/content/cityscapes/segmentation/"
 
 data_dir = project_dir + "data/"
 
-preprocess_data_dir = "./segmentation/data/"
+preprocess_data_dir = "./preprocess-data/"
 
 batch_size = 8
 
