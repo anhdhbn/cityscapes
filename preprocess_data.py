@@ -320,7 +320,7 @@ for step, (img_path, label_path) in enumerate(zip(train_img_paths, train_trainId
     augmented_train_trainId_label_paths.append(label_img_flipped_path)
 
 # # randomly shuffle the augmented train data:
-augmented_train_data = zip(augmented_train_img_paths, augmented_train_trainId_label_paths)
+augmented_train_data = list(zip(augmented_train_img_paths, augmented_train_trainId_label_paths))
 random.shuffle(augmented_train_data)
 random.shuffle(augmented_train_data)
 random.shuffle(augmented_train_data)
