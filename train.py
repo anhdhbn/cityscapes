@@ -11,7 +11,7 @@ data_dir = project_dir + "data/"
 
 preprocess_data_dir = "./preprocess-data/"
 
-batch_size = 8
+batch_size = 4
 
 img_height = 512
 img_width = 1024
